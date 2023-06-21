@@ -4,4 +4,21 @@
  This section displays an interactive product showcase.
 {% endcomment %}
 
-  
+  <section class="interactive-product-showcase">
+  <div class="interactive-product-showcase__inner">
+    <h2 class="interactive-product-showcase__title">{{ section.settings.title }}</h2>
+    <h3 class="interactive-product-showcase__subtitle">{{ section.settings.subtitle }}</h3>
+
+    <div class="interactive-product-showcase__products">
+      {% for product in section.settings.products %}
+        <div class="interactive-product-showcase__product">
+          <img src="{{ product.image.src }}" alt="{{ product.title }}" class="interactive-product-showcase__product-image">
+          <h4 class="interactive-product-showcase__product-name">{{ product.title }}</h4>
+          <p class="interactive-product-showcase__product-description">{{ product.description }}</p>
+          <span class="interactive-product-showcase__product-price">{{ product.price }}</span>
+          <button class="interactive-product-showcase__add-to-cart">Add to Cart</button>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
