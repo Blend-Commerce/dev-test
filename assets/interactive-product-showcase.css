@@ -40,3 +40,26 @@
     gap: 10px; 
   }
 }
+
+.interactive-product-showcase__product {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+
+  @media screen and (min-width: 768px) {
+    padding: 15px; 
+  }
+}
+
+.interactive-product-showcase__product-image {
+  width:100%;
+  height: auto;
+  object-fit: contain;
+
+}
+
+.interactive-product-showcase__product-name {
+font-size:
+
+}
