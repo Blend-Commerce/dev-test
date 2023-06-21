@@ -94,7 +94,7 @@
 
 .interactive-product-showcase__filter {
   text-align: right;
-  margin-bottom: 20px; /* Adjust margin as needed */
+  margin-bottom: 20px; 
 
   @media screen and (max-width: 767px) {
     text-align: left;
