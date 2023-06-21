@@ -16,11 +16,16 @@
       <option value="garden">Garden</option>
     </select>
   </div>
-  
+
   <div class="interactive-product-showcase__products">
     {% for product in section.products %}
       <div class="interactive-product-showcase__product" data-tags="{{ product.tags | join: ' ' }}">
-        <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}" class="interactive-product-showcase__product-image">
+<!--         <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}" class="interactive-product-showcase__product-image"> -->
+
+{% assign image = product.featured_image | default: product.images.first %}
+{% assign image_url = image | img_url: 'medium' %}
+<img src="{{ image_url }}" alt="{{ product.title }}" class="interactive-product-showcase__product-image" width="{{ image.width }}" height="{{ image.height }}">
+      
         <h3 class="interactive-product-showcase__product-name">{{ product.title }}</h3>
         <p class="interactive-product-showcase__product-description">{{ product.description }}</p>
         <p class="interactive-product-showcase__product-price">{{ product.price | money }}</p>
