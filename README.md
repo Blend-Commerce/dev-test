@@ -32,7 +32,7 @@ Create a small Shopify product card. When clicked, the product card should add p
 ## Task 2: Knowledge (30 minutes)
 You'll answer a series of questions and provide a small piece of code (if necessary).
 
-1. Explain and provide an example of how you would create and manage a counter in JavaScript that increments every second.
+1. What are React Hooks? Provide an example of a functional component that uses the useState and useEffect hooks.
 2. Describe the process you would take to clone a create a new branch. You can use ready add-ons in your IDE.
 3. You need to make a form accessible for screen readers. What HTML attributes would you use?
 4. How would you display different prices for logged-in and logged-out users using Liquid? Show some example code.
