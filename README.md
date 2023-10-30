@@ -33,7 +33,7 @@ Create a small Shopify product card. When clicked, the product card should add p
 You'll answer a series of questions and provide a small piece of code (if necessary).
 
 1. What are React Hooks? Provide an example of a functional component that uses the useState and useEffect hooks.
-2. Describe the process you would take to clone a create a new branch. You can use ready add-ons in your IDE.
+2. Describe the process you would take to clone and create a new branch. You can use ready add-ons in your IDE.
 3. You need to make a form accessible for screen readers. What HTML attributes would you use?
 4. How would you display different prices for logged-in and logged-out users using Liquid? Show some example code.
 5. How would you make a responsive navigation bar? Outline your approach.
