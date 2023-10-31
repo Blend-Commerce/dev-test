@@ -166,7 +166,7 @@
                     style="--animation-order: {{ forloop.index }};"
                   {% endif %}
                 >
-                  {% render 'card-product',
+                  {% comment %} {% render 'card-product',
                     card_product: product,
                     media_aspect_ratio: section.settings.image_ratio,
                     image_shape: section.settings.image_shape,
@@ -176,9 +176,11 @@
                     lazy_load: lazy_load,
                     show_quick_add: section.settings.enable_quick_add,
                     section_id: section.id
-                  %}
+                  %} {% endcomment %}
+
                 </li>
               {%- endfor -%}
+              {% render 'product-card-new', product: product %}
             </ul>
 
             {%- if paginate.pages > 1 -%}

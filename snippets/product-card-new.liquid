@@ -1,0 +1,80 @@
+{% assign product = all_products['clay-plant-pot'] %}
+
+<div class="product-card" onclick="addToCart(event)" data-id="{{ product.selected_or_first_available_variant.id }}">
+    <div class="product-card__image-wrapper">
+      {{ product.featured_image | image_url: width: 270, height: 180 | image_tag }}
+      {% if product.media.size > 1 %}
+        {{ product.media[1].src | image_url: width: 270 | image_tag: class: "hover-image" }}
+      {% endif %}
+    </div>
+
+    <div class="product-card__details">
+      <h4>{{ product.title }}</h4>
+      <span>{{ product.price | money_without_trailing_zeros }}</span>
+    </div>
+</div>
+
+<style>
+  .product-card {
+    cursor: pointer;
+  }
+  .product-card__image-wrapper img:first-child:has(+ .hover-image) {
+    position: absolute;
+  }
+  .product-card__image-wrapper img:first-child:has(+ .hover-image):hover {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+  .product-card__details {
+    padding: 0 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-card:hover .product-card__details h4 {
+    transition: all 0.2s;
+  }
+  .product-card:hover .product-card__details h4 {
+    text-decoration: underline;
+  }
+</style>
+
+<script>
+  function addToCart(event) {
+    // Target product card element
+    const target = event.target.closest(".product-card");
+    // Product varient ID
+    const id = target.dataset.id;
+    // Add to cart data
+    const data = {
+      items: [
+        {
+          id,
+          quantity: 1,
+        },
+      ],
+    };
+    
+    // POST request to cart api
+    fetch(window.Shopify.routes.root + "cart/add.js", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          // Error handling
+          throw new Error("Oops something went wrong");
+        }
+        response.json();
+      })
+      .then((data) => {
+        // Successful added to cart message
+        alert("Added to cart")
+        window.location.reload()
+      })
+      .catch((err) => alert("An error occurred!"))
+  }
+</script>
