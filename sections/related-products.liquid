@@ -20,6 +20,63 @@
   }
 {%- endstyle -%}
 
+<!--blend test -->
+{% assign productTest = all_products['antique-drawers'] %}
+
+<div class="product-card" onclick="addToCart()">
+  <!-- HTML & Liquid goes here -->
+  <img src="{{productTest.featured_image  | image_url: width: 300 }}" alt="{{productTest.title}}" height="200" width="200">
+  <h3>{{ productTest.title }}</h3>
+  {% comment %} <button>Add to cart<button> {% endcomment %}
+  <form method="post" action="/cart/add" id="add-to-cart-form">
+    <input type="hidden" name="id" value="{{ productTest.variants.first.id }}" />
+    <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+    <input type="submit" value="ADD TO CART" class="add-to-cart-button" />
+  </form>
+</div>
+
+
+
+<style>
+  /* CSS goes here */
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 auto;
+    width: 70%;
+  }
+</style>
+
+<script>
+  function addToCart() {
+    // JS goes here
+    const container = document.querySelector('.product-card');
+    const paragraph = document.body.appendChild(document.createElement("p"));
+    paragraph.innerText = "Product added to cart";
+    container.appendChild(paragraph);
+
+  $('#add-to-cart-form').on('submit', function(event) {
+    event.preventDefault(); // prevent default form submission
+    $.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: $(this).serialize(),
+      dataType: 'json',
+      success: function() {
+        // Do something on success (e.g. show a success message)
+        console.log('product added');
+      },
+      error: function() {
+        // Do something on error (e.g. show an error message)
+        console.log('error');
+      }
+    });
+  });
+</script>
+
+<!--Blend test end-->
+
 <div class="color-{{ section.settings.color_scheme }} gradient no-js-hidden">
   <product-recommendations
     class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
